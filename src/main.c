@@ -1,9 +1,16 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <X11/X.h>
-#include <X11/keysym.h>
-#include <mlx.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/09 21:07:43 by dchaves-          #+#    #+#             */
+/*   Updated: 2022/02/09 21:28:15 by dchaves-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/fdf.h"
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 1000
@@ -149,6 +156,9 @@ int	main(void)
 	
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
+
+	// Test Libft
+	printf("ft_itoa: %s\n", ft_itoa(321));
 
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, DestroyNotify, NoEventMask, &close_window, &data);
