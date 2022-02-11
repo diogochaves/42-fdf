@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/02/10 16:26:05 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/02/11 19:39:46 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,6 @@ fclean:			clean
 re:				fclean all
 
 val:	
-				$(VALGRIND) ./$(NAME)
+				$(VALGRIND) ./$(NAME) ./map/42.fdf
 
 .PHONY: 		all clean fclean re libft val

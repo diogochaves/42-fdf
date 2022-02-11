@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:07:43 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/02/10 23:44:42 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/02/11 20:59:12 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,25 +95,18 @@ void	plot_line(t_img *img, int x0, int y0, int x1, int y1, int color)
 	sy = y0 < y1 ? 1 : -1; 
 	err = dx + dy; 
 
-	printf("\nx0: %d | x1: %d | y0: %d | y1: %d\n\n", x0, x1, y0, y1);
-	printf("dx: %d | dy: %d | sx: %d | sy: %d | err: %d\n", dx, dy, sx, sy, err);
-
 	while (1){
-		printf("\nimg_pix_put(x,y): %d, %d | ", x0, y0);
 		img_pix_put(img, x0, y0, color);
 		if (x0 == x1 && y0 == y1) 
 			break;
 		e2 = 2 * err;
-		printf("e2: %d\n", e2);
 		if (e2 >= dy) { /* e_xy+e_x > 0 */
 			err += dy;
 			x0 += sx;
-			printf("(e2 >= dy) => err: %d, x0: %d\n", err, x0);
 		} 
 		if (e2 <= dx) { /* e_xy+e_y < 0 */
 			err += dx;
 			y0 += sy;
-			printf("(e2 <= dx) => err: %d, y0: %d\n", err, y0);
 		}
 	}
 }
@@ -123,7 +116,7 @@ int	create_image(t_data *data)
 	render_background(&data->img, BACKGROUND);
 	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, GREEN_PIXEL});
 	render_rect(&data->img, (t_rect){0, 0, 100, 100, RED_PIXEL});
-	plot_line(&data->img, 500, 200, 508, 203, FOREGROUND);	
+	plot_line(&data->img, 800, 100, 0, WINDOW_HEIGHT - 100, FOREGROUND);	
 	return (0);
 }
 
@@ -136,9 +129,39 @@ int	render(t_data *data)
 	return (0);
 }
 
-int	main(void)
+void	load_map(int argc, char **argv)
+{
+	int		fd;
+	char	*map;
+	int		lines;
+	int		columns;
+
+	printf("argc: %d | argv[0]: %s | argv[1]: %s\n", argc, argv[0], argv[1]);
+	//check_args();
+	fd = open(argv[1], O_RDONLY);
+	printf("fd: %d\n", fd);
+
+	lines = 0;
+	columns = 0;
+	while(1)
+	{
+		map = get_next_line(fd);
+		if (!map)
+			break ;
+		lines++;
+		printf("%s", map);
+		free(map);
+	}
+	printf("lines: %d\n", lines);
+	printf("columns: %d\n", columns);
+	close(fd);
+}
+
+int	main(int argc, char **argv)
 {
 	t_data	data;
+
+	load_map(argc, argv);
 
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
