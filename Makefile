@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/02/09 22:47:31 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/02/10 16:26:05 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,12 @@ DEBUG		:=	-g
 
 # BASH COMMANDS
 RM 			:=	rm -f
-VALGRIND	:=	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -q --tool=memcheck
+VALGRIND	:=	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 
 # FILES
 NAME		:=	fdf
-HEADER		:=	$(INC_PATH)fdf.h
+HEADER		:=	$(INC_PATH)fdf.h \
+				$(INC_PATH)minilibx.h
 
 SRC_FILES 	:=	main.c
 SOURCES		:=	$(addprefix $(SRC_PATH), $(SRC_FILES))
@@ -39,10 +40,10 @@ all:			libft $(NAME)
 
 # -> creates executable
 $(NAME):		$(OBJECTS)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -lmlx -lXext -lX11 -L $(LIBFT_PATH) -lft
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -lmlx -lXext -lX11 -lm -L $(LIBFT_PATH) -lft
 
 # -> creates object files inside ./obj/
-$(OBJ_PATH)%.o:	$(SRC_PATH)%.c
+$(OBJ_PATH)%.o:	$(SRC_PATH)%.c $(HEADER)
 				$(CC) $(CFLAGS) -I $(INC_PATH) -c $< -o $@
 
 libft:

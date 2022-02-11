@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:07:43 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/02/10 13:16:17 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/02/10 23:44:42 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,26 @@ int	close_window(t_data *data)
 	exit(0);
 }
 
+// ESC: Exit | TAB: Debug info
+int	handle_keypress(int keysym, t_data *data)
+{
+	if (keysym == XK_Escape)
+		close_window(data);
+	if (keysym == XK_Tab)
+	{
+		printf("bpp: %d\n", data->img.bits_per_pixel);
+		printf("line_len: %d\n", data->img.line_len);
+		printf("endian: %d\n", data->img.endian);
+	}		
+	return (0);
+}
+
 void	img_pix_put(t_img *img, int x, int y, int color)
 {
-	char	*pixel;
-	int		i;
-
-	i = img->bpp - 8;
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	while (i >= 0)
-	{
-		/* big endian, MSB is the leftmost bit */
-		if (img->endian != 0)
-			*pixel++ = (color >> i) & 0xFF;
-		/* little endian, LSB is the leftmost bit */
-		else
-			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-		i -= 8;
-	}
+	char    *pixel;
+	
+	pixel = img->addr + (y * img->line_len + x * (img->bits_per_pixel / 8));
+	*(int *)pixel = color;
 }
 
 /* The x and y coordinates of the rect corresponds to its upper left corner. */
@@ -75,17 +78,52 @@ void	render_background(t_img *img, int color)
 	}
 }
 
-// ESC: Exit | TAB: Debug info
-int	handle_keypress(int keysym, t_data *data)
+
+
+void	plot_line(t_img *img, int x0, int y0, int x1, int y1, int color)
 {
-	if (keysym == XK_Escape)
-		close_window(data);
-	if (keysym == XK_Tab)
-	{
-		printf("bpp: %d\n", data->img.bpp);
-		printf("line_len: %d\n", data->img.line_len);
-		printf("endian: %d\n", data->img.endian);
-	}		
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int e2; /* error value e_xy */
+
+	dx =  abs (x1 - x0);
+	sx = x0 < x1 ? 1 : -1;
+	dy = -abs (y1 - y0);
+	sy = y0 < y1 ? 1 : -1; 
+	err = dx + dy; 
+
+	printf("\nx0: %d | x1: %d | y0: %d | y1: %d\n\n", x0, x1, y0, y1);
+	printf("dx: %d | dy: %d | sx: %d | sy: %d | err: %d\n", dx, dy, sx, sy, err);
+
+	while (1){
+		printf("\nimg_pix_put(x,y): %d, %d | ", x0, y0);
+		img_pix_put(img, x0, y0, color);
+		if (x0 == x1 && y0 == y1) 
+			break;
+		e2 = 2 * err;
+		printf("e2: %d\n", e2);
+		if (e2 >= dy) { /* e_xy+e_x > 0 */
+			err += dy;
+			x0 += sx;
+			printf("(e2 >= dy) => err: %d, x0: %d\n", err, x0);
+		} 
+		if (e2 <= dx) { /* e_xy+e_y < 0 */
+			err += dx;
+			y0 += sy;
+			printf("(e2 <= dx) => err: %d, y0: %d\n", err, y0);
+		}
+	}
+}
+
+int	create_image(t_data *data)
+{
+	render_background(&data->img, BACKGROUND);
+	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, GREEN_PIXEL});
+	render_rect(&data->img, (t_rect){0, 0, 100, 100, RED_PIXEL});
+	plot_line(&data->img, 500, 200, 508, 203, FOREGROUND);	
 	return (0);
 }
 
@@ -93,10 +131,8 @@ int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	render_background(&data->img, BACKGROUND);
-	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, GREEN_PIXEL});
-	render_rect(&data->img, (t_rect){0, 0, 100, 100, RED_PIXEL});
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 100, FOREGROUND, "TEST");
 	return (0);
 }
 
@@ -107,7 +143,7 @@ int	main(void)
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		return (MLX_ERROR);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "my window");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
@@ -115,8 +151,9 @@ int	main(void)
 	}
 	/* Setup hooks */ 
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
-			&data.img.line_len, &data.img.endian);	
+	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bits_per_pixel,
+			&data.img.line_len, &data.img.endian);
+	create_image(&data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, DestroyNotify, NoEventMask, &close_window, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
