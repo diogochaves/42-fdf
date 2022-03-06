@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/02/11 19:39:46 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/06 12:41:04 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,11 @@ NAME		:=	fdf
 HEADER		:=	$(INC_PATH)fdf.h \
 				$(INC_PATH)minilibx.h
 
-SRC_FILES 	:=	main.c
+SRC_FILES 	:=	main.c \
+				close.c \
+				hook.c \
+				draw.c \
+				map.c
 SOURCES		:=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ_FILES	:=	$(patsubst %.c, %.o, $(SRC_FILES))
 OBJECTS 	:=	$(addprefix $(OBJ_PATH), $(OBJ_FILES))
@@ -58,7 +62,10 @@ fclean:			clean
 
 re:				fclean all
 
+run:
+	./$(NAME) ./map/42.fdf
+
 val:	
 				$(VALGRIND) ./$(NAME) ./map/42.fdf
 
-.PHONY: 		all clean fclean re libft val
+.PHONY: 		all clean fclean re libft run val
