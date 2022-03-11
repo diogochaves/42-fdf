@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   stats.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 21:42:03 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 02:46:52 by dchaves-         ###   ########.fr       */
+/*   Created: 2022/03/11 02:37:35 by dchaves-          #+#    #+#             */
+/*   Updated: 2022/03/11 02:48:45 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-void	rotate_x(t_fdf *fdf)
+t_stats	*stats_init()
 {
-	int	row;
-	int	col;
+	t_stats	*stats;
+	
+	stats = malloc(sizeof(t_stats));
+	// TODO: check malloc
 
-	row = 0;
-	col = 0;
+	stats->x_move = 0;
+	stats->y_move = 0;
 
-	while(row < fdf->map->rows)
-	{
-		while (col < fdf->map->columns)
-		{
-			fdf->map->vectors[row][col] = vec3_rotate_x(fdf->map->vectors[row][col], 2);
-			col++;
-		}
-		col = 0;
-		row++;
-	}	
+	return(stats);
 }

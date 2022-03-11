@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:32:51 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/10 13:26:35 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 02:44:33 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	close_window(t_fdf *fdf)
 	mlx_destroy_display(fdf->data->mlx_ptr);
 	free(fdf->data->mlx_ptr);
 	free(fdf->data);
+	free(fdf->stats);
 	exit(0);
 }

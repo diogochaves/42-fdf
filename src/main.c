@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:07:43 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 01:22:37 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 02:42:08 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	fdf.map = map_init(argc, argv);
 	fdf.data = data_init();
 	data_img_init(&fdf);
+	fdf.stats = stats_init();
 	
 	/* Setup hooks */ 
 	mlx_loop_hook(fdf.data->mlx_ptr, &render, &fdf);

@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:38:25 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 00:50:15 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 02:57:30 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,13 @@ int	handle_keypress(int keysym, t_fdf *fdf)
 		rotate_x(fdf);
 		printf("x\n");
 	}
+	if (keysym == XK_Up)
+		fdf->stats->y_move += -10;
+	if (keysym == XK_Down)
+		fdf->stats->y_move += 10;
+	if (keysym == XK_Left)
+		fdf->stats->x_move += -10;
+	if (keysym == XK_Right)
+		fdf->stats->x_move += 10;
 	return (0);
 }

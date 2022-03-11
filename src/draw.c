@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:40:42 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 00:46:04 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 01:38:34 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
 	
-	pixel = img->addr + (y * img->line_len + x * (img->bits_per_pixel / 8));
-	*(int *)pixel = color;
+	if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
+	{
+		pixel = img->addr + (y * img->line_len + x * (img->bits_per_pixel / 8));
+		*(int *)pixel = color;
+	}
 }
 
 /* The x and y coordinates of the rect corresponds to its upper left corner. */
-
 int	render_rect(t_img *img, t_rect rect)
 {
 	int	i;

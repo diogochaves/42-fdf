@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/03/11 00:47:43 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/11 02:41:50 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ SRC_FILES 	:=	main.c \
 				map.c \
 				data.c \
 				render.c \
-				vector.c
+				vector.c \
+				stats.c
 SOURCES		:=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ_FILES	:=	$(patsubst %.c, %.o, $(SRC_FILES))
 OBJECTS 	:=	$(addprefix $(OBJ_PATH), $(OBJ_FILES))
