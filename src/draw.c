@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:40:42 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 01:38:34 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:04:38 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,33 +57,31 @@ void	render_background(t_img *img, int color)
 	}
 }
 
+
+// TODO: Change to Bresenham algorithm
 void	plot_line(t_img *img, t_vec3 vec0, t_vec3 vec1, int color)
 {
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int e2; /* error value e_xy */
+	float	delta_x;
+	float	delta_y;
+	float	x_inc;
+	float	y_inc;
+	int	longest_side_length;
 
-	dx =  fabs (vec1.x - vec0.x);
-	sx = vec0.x < vec1.x ? 1 : -1;
-	dy = -fabs (vec1.y - vec0.y);
-	sy = vec0.y < vec1.y ? 1 : -1; 
-	err = dx + dy; 
+	delta_x = (vec1.x - vec0.x);
+	delta_y = (vec1.y - vec0.y);
 
-	while (1){
-		img_pix_put(img, vec0.x, vec0.y, color);
-		if (vec0.x == vec1.x && vec0.y == vec1.y) 
-			break;
-		e2 = 2 * err;
-		if (e2 >= dy) { /* e_xy+e_x > 0 */
-			err += dy;
-			vec0.x += sx;
-		} 
-		if (e2 <= dx) { /* e_xy+e_y < 0 */
-			err += dx;
-			vec0.y += sy;
-		}
+	longest_side_length = (fabs(delta_x) >= fabs(delta_y)) ? fabs(delta_x) : fabs(delta_y);
+
+	// Find how much we should increment in both x and y each step
+	x_inc = delta_x / (float)longest_side_length;
+	y_inc = delta_y / (float)longest_side_length;
+
+	for (int i = 0; i <= longest_side_length; i++)
+	{
+		img_pix_put(img, round(vec0.x), round(vec0.y), color);
+		vec0.x += x_inc;
+		vec0.y += y_inc;
 	}
+
 }
+

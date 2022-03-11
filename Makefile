@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/03/11 02:41:50 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/11 15:59:18 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,17 +29,19 @@ VALGRIND	:=	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes
 # FILES
 NAME		:=	fdf
 HEADER		:=	$(INC_PATH)fdf.h \
-				$(INC_PATH)minilibx.h
+				$(INC_PATH)structs.h \
+				$(INC_PATH)macros.h
 
 SRC_FILES 	:=	main.c \
 				close.c \
-				hook.c \
-				draw.c \
-				map.c \
 				data.c \
+				draw.c \
+				hook.c \
+				map.c \
+				project.c \
 				render.c \
-				vector.c \
-				stats.c
+				stats.c \
+				vector.c
 SOURCES		:=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ_FILES	:=	$(patsubst %.c, %.o, $(SRC_FILES))
 OBJECTS 	:=	$(addprefix $(OBJ_PATH), $(OBJ_FILES))

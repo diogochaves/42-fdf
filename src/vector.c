@@ -6,35 +6,44 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 00:28:24 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 02:02:05 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:09:01 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-t_vec3	vec3_rotate_x(t_vec3 v, float angle)
+void	vec3_rotate_x(t_vec3 *v, float angle)
 {
-	t_vec3	rotated_vector;
-	static int	count = 0;
-	count++;
+	t_vec3 vector;
 
-	rotated_vector.x = v.x;
-	rotated_vector.y = v.y; //v.y * cos(angle) - v.z * sin(angle),
-	rotated_vector.z = v.z + angle;//v.y * sin(angle) + v.z * cos(angle);
-
-	printf("cos(%f) = %f\n", angle, cos(angle));
-	printf("sin(%f) = %f\n", angle, sin(angle));
-	printf("COUNT(%d)", count);
-
-	return (rotated_vector);
+	vector.y = v->y * cos(angle) - v->z * sin(angle);
+	vector.z = v->y * sin(angle) + v->z * cos(angle);
+	v->y = vector.y;
+	v->z = vector.z;
 }
 
-t_vec3	vec3_translate(t_vec3 v, float x, float y)
+void	vec3_rotate_y(t_vec3 *v, float angle)
 {
-	t_vec3	translated_vector;
+	t_vec3 vector;
 
-	translated_vector.x = v.x + x;
-	translated_vector.y = v.y + y;
-	translated_vector.z = v.z;
-	return(translated_vector);
+	vector.x = v->x * cos(angle) + v->z * sin(angle);
+	vector.z = -v->x * sin(angle) + v->z * cos(angle);
+	v->x = vector.x;
+	v->z = vector.z;
+}
+
+void	vec3_rotate_z(t_vec3 *v, float angle)
+{
+	t_vec3 vector;
+
+	vector.x = v->x * cos(angle) - v->y * sin(angle);
+	vector.y = v->x * sin(angle) + v->y * cos(angle);
+	v->x = vector.x;
+	v->y = vector.y;
+}
+
+void	vec3_translate(t_vec3 *v, float x, float y)
+{
+	v->x += x;
+	v->y += y;
 }

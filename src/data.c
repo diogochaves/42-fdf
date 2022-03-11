@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:30:56 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 02:55:58 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:08:39 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,37 +67,41 @@ static void iso(float *x, float *y, float z)
 }
 */
 
+void	transform(t_fdf *fdf, t_vec3 *vec)
+{
+	vec3_rotate_x(vec, fdf->stats->x_angle);
+	vec3_rotate_y(vec, fdf->stats->y_angle);
+	vec3_rotate_z(vec, fdf->stats->z_angle);	
+	project(vec, fdf->stats->zoom);
+	vec3_translate(vec, fdf->stats->x_move, fdf->stats->y_move);
+}
+
 void	plot_map(t_fdf *fdf)
 {
 	int		row;
 	int		col;
-	int		zoom;
 	t_vec3	vec0;
 	t_vec3	vec1;
 
 	row = 0;
 	col = 0;
-	zoom = 10;
 
 	while(row < fdf->map->rows)
 	{
 		while (col < fdf->map->columns)
 		{
 			vec0 = fdf->map->vectors[row][col];
-			project(&vec0, zoom);
-			vec0 = vec3_translate(vec0, fdf->stats->x_move, fdf->stats->y_move);
+			transform(fdf, &vec0);
 			if (col < fdf->map->columns - 1)
 			{
 				vec1 = fdf->map->vectors[row][col + 1];
-				project(&vec1, zoom);
-				vec1 = vec3_translate(vec1, fdf->stats->x_move, fdf->stats->y_move);
+				transform(fdf, &vec1);
 				plot_line(&fdf->data->img, vec0, vec1, WHITE_PIXEL);
 			}
 			if (row < fdf->map->rows - 1)
 			{
 				vec1 = fdf->map->vectors[row + 1][col];
-				project(&vec1, zoom);
-				vec1 = vec3_translate(vec1, fdf->stats->x_move, fdf->stats->y_move);
+				transform(fdf, &vec1);
 				plot_line(&fdf->data->img, vec0, vec1, WHITE_PIXEL);
 			}
 			col++;

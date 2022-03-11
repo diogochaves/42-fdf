@@ -1,28 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minilibx.h                                         :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/10 13:19:35 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 15:27:54 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINILIBX_H
-# define MINILIBX_H
-
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
-
-# define MLX_ERROR 1
-
-# define RED_PIXEL 0xFF0000
-# define GREEN_PIXEL 0xFF00
-# define WHITE_PIXEL 0xFFFFFF
-# define BACKGROUND 0x282a36
-# define FOREGROUND 0xf8f8f2
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 typedef struct s_img
 {
@@ -49,5 +38,36 @@ typedef struct s_rect
 	int	height;
 	int	color;
 }	t_rect;
+
+typedef struct s_vec3
+{
+	float	x;
+	float	y;
+	float	z;
+} t_vec3;
+
+typedef struct s_map
+{
+	int		columns;
+	int		rows;
+	t_vec3	**vectors;
+} t_map;
+
+typedef struct	s_stats
+{
+	int		zoom;
+	float	x_move;	
+	float	y_move;
+	float	x_angle;	
+	float	y_angle;
+	float	z_angle;	
+} t_stats;
+
+typedef struct s_fdf
+{
+	t_data	*data;
+	t_map	*map;
+	t_stats	*stats;
+} t_fdf;
 
 #endif
