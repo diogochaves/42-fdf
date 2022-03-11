@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/06 12:38:25 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 00:50:15 by dchaves-         ###   ########.fr       */
+/*   Created: 2022/03/10 21:42:03 by dchaves-          #+#    #+#             */
+/*   Updated: 2022/03/11 01:25:38 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-// ESC: Exit | TAB: Debug info
-int	handle_keypress(int keysym, t_fdf *fdf)
+void	rotate_x(t_fdf *fdf)
 {
-	if (keysym == XK_Escape)
-		close_window(fdf);
-	if (keysym == XK_Tab)
+	int	row;
+	int	col;
+
+	row = 0;
+	col = 0;
+
+	while(row < fdf->map->rows)
 	{
-		printf("bpp: %d\n", fdf->data->img.bits_per_pixel);
-		printf("line_len: %d\n", fdf->data->img.line_len);
-		printf("endian: %d\n", fdf->data->img.endian);
-	}
-	if (keysym == XK_x)
-	{
-		rotate_x(fdf);
-		printf("x\n");
-	}
-	return (0);
+		while (col < fdf->map->columns)
+		{
+			fdf->map->vectors[row][col] = vec3_rotate_x(fdf->map->vectors[row][col], 2);
+			col++;
+		}
+		col = 0;
+		row++;
+	}	
 }

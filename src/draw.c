@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:40:42 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/06 12:40:55 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 00:46:04 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	render_background(t_img *img, int color)
 	}
 }
 
-void	plot_line(t_img *img, int x0, int y0, int x1, int y1, int color)
+void	plot_line(t_img *img, t_vec3 vec0, t_vec3 vec1, int color)
 {
 	int	dx;
 	int	dy;
@@ -64,24 +64,24 @@ void	plot_line(t_img *img, int x0, int y0, int x1, int y1, int color)
 	int	err;
 	int e2; /* error value e_xy */
 
-	dx =  abs (x1 - x0);
-	sx = x0 < x1 ? 1 : -1;
-	dy = -abs (y1 - y0);
-	sy = y0 < y1 ? 1 : -1; 
+	dx =  fabs (vec1.x - vec0.x);
+	sx = vec0.x < vec1.x ? 1 : -1;
+	dy = -fabs (vec1.y - vec0.y);
+	sy = vec0.y < vec1.y ? 1 : -1; 
 	err = dx + dy; 
 
 	while (1){
-		img_pix_put(img, x0, y0, color);
-		if (x0 == x1 && y0 == y1) 
+		img_pix_put(img, vec0.x, vec0.y, color);
+		if (vec0.x == vec1.x && vec0.y == vec1.y) 
 			break;
 		e2 = 2 * err;
 		if (e2 >= dy) { /* e_xy+e_x > 0 */
 			err += dy;
-			x0 += sx;
+			vec0.x += sx;
 		} 
 		if (e2 <= dx) { /* e_xy+e_y < 0 */
 			err += dx;
-			y0 += sy;
+			vec0.y += sy;
 		}
 	}
 }

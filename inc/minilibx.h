@@ -6,15 +6,15 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/06 12:53:30 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:19:35 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINILIBX_H
 # define MINILIBX_H
 
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
 
 # define MLX_ERROR 1
 
