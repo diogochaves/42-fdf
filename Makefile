@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/03/11 15:59:18 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/11 19:14:30 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,12 +35,13 @@ HEADER		:=	$(INC_PATH)fdf.h \
 SRC_FILES 	:=	main.c \
 				close.c \
 				data.c \
+				display.c \
 				draw.c \
 				hook.c \
 				map.c \
-				project.c \
+				projection.c \
 				render.c \
-				stats.c \
+				utils.c \
 				vector.c
 SOURCES		:=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ_FILES	:=	$(patsubst %.c, %.o, $(SRC_FILES))

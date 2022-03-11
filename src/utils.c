@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stats.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 02:37:35 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 15:13:26 by dchaves-         ###   ########.fr       */
+/*   Created: 2022/03/11 19:13:00 by dchaves-          #+#    #+#             */
+/*   Updated: 2022/03/11 19:13:01 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-t_stats	*stats_init()
+float	max(float a, float b)
 {
-	t_stats	*stats;
-	
-	stats = malloc(sizeof(t_stats));
-	// TODO: check malloc
-
-	stats->zoom = 10;
-	stats->x_move = 0;
-	stats->y_move = 0;
-	stats->x_angle = 0;
-	stats->y_angle = 0;
-	stats->z_angle = 0;
-
-	return(stats);
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }
 
-void	stats_reset(t_fdf *fdf)
+float	min(float a, float b)
 {
-	fdf->stats->zoom = 10;
-	fdf->stats->x_move = 0;
-	fdf->stats->y_move = 0;
-	fdf->stats->x_angle = 0;
-	fdf->stats->y_angle = 0;
-	fdf->stats->z_angle = 0;
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }

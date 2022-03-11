@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 00:28:24 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 15:09:01 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 19:08:17 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,4 @@ void	vec3_rotate_z(t_vec3 *v, float angle)
 	vector.y = v->x * sin(angle) + v->y * cos(angle);
 	v->x = vector.x;
 	v->y = vector.y;
-}
-
-void	vec3_translate(t_vec3 *v, float x, float y)
-{
-	v->x += x;
-	v->y += y;
 }

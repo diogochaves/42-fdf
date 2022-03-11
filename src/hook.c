@@ -6,44 +6,47 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 12:38:25 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 15:12:24 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 19:31:09 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-// ESC: Exit | TAB: Debug info
 int	handle_keypress(int keysym, t_fdf *fdf)
 {
 	if (keysym == XK_Escape)
 		close_window(fdf);
 	if (keysym == XK_Tab)
 	{
-		printf("bpp: %d\n", fdf->data->img.bits_per_pixel);
-		printf("line_len: %d\n", fdf->data->img.line_len);
-		printf("endian: %d\n", fdf->data->img.endian);
+		printf("WINDOW_WIDTH: %d\n", WINDOW_WIDTH);
+		printf("fdf->map->columns: %d\n", fdf->map->columns);
+		printf("fdf->data->x_move: %f\n", fdf->data->x_move);
 	}
 	if (keysym == XK_w)
-		fdf->stats->x_angle += 5 * ANG_1;
+		fdf->data->x_angle += 5 * ANG_1;
 	if (keysym == XK_s)
-		fdf->stats->x_angle -= 5 * ANG_1;
+		fdf->data->x_angle -= 5 * ANG_1;
 	if (keysym == XK_a)
-		fdf->stats->y_angle -= 5 * ANG_1;
+		fdf->data->y_angle -= 5 * ANG_1;
 	if (keysym == XK_d)
-		fdf->stats->y_angle += 5 * ANG_1;
+		fdf->data->y_angle += 5 * ANG_1;
 	if (keysym == XK_q)
-		fdf->stats->z_angle -= 5 * ANG_1;
+		fdf->data->z_angle -= 5 * ANG_1;
 	if (keysym == XK_e)
-		fdf->stats->z_angle += 5 * ANG_1;
+		fdf->data->z_angle += 5 * ANG_1;
 	if (keysym == XK_Up)
-		fdf->stats->y_move += -10.55;
+		fdf->data->y_move += -10;
 	if (keysym == XK_Down)
-		fdf->stats->y_move += 10.09;
+		fdf->data->y_move += 10;
 	if (keysym == XK_Left)
-		fdf->stats->x_move += -10.77;
+		fdf->data->x_move += -10;
 	if (keysym == XK_Right)
-		fdf->stats->x_move += 10.9388847439934;
+		fdf->data->x_move += 10;
 	if (keysym == XK_r)
-		stats_reset(fdf);
+		data_reset(fdf);
+	if (keysym == XK_equal || keysym == XK_KP_Add)
+		fdf->data->scale *= 1.2;
+	if (keysym == XK_minus || keysym == XK_KP_Subtract)
+		fdf->data->scale /= 1.2;
 	return (0);
 }

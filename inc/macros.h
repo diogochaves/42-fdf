@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:25:04 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 15:27:18 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 19:21:14 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define WINDOW_WIDTH	1280
 # define WINDOW_HEIGHT	720
+# define PADDING		200
 
 # define MLX_ERROR 		1
 
