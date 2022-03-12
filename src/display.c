@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 13:30:56 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 18:48:34 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 12:12:31 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	display_img_init(t_fdf *fdf)
 			&fdf->display->img.line_len, &fdf->display->img.endian);
 }
 
-int	create_image(t_fdf *fdf)
+int		create_image(t_fdf *fdf)
 {
-	render_background(&fdf->display->img, BACKGROUND);
+	fill_img(&fdf->display->img, COLOR_BACKGROUND);
 	plot_map(fdf);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:59:43 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 18:01:56 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:07:55 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ void	isometric(float *x, float *y, float z)
 	*y = -z + (previous_x + previous_y) * sin(0.523599);
 }
 
-void	scale(t_vec3 *vec, int scale)
+void	scale(t_vec *vec, int scale)
 {
 	vec->x *= scale;
 	vec->y *= scale;
 }
 
-void	translate(t_vec3 *vec, float x_move, float y_move)
+void	translate(t_vec *vec, float x_move, float y_move)
 {
 	vec->x += x_move;
 	vec->y += y_move;
 }
 
-void	project(t_vec3 *vec, int scale)
+void	project(t_vec *vec, int scale)
 {
 	vec->x = vec->x * scale + 400;
 	vec->y = vec->y * scale + 400 - vec->z;

@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 20:24:16 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 19:06:49 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ t_map	*map_init(int argc, char **argv)
 		return(NULL);
 
 	map->name = argv[1];
+	printf("\033[1;32m\n   Loading map...\n");
 	map_check(map, argv[1]);
 	map_load(map, argv[1]);
+	printf("   [ok]\033[0m\n\n");
+	
 	return(map);
 }
 
@@ -71,46 +74,6 @@ static void	map_check(t_map *map, char *argv)
 	close(fd);
 }
 
-static void	map_load(t_map *map, char *argv)
-{
-	int		x;
-	int		y;
-	int		fd;
-	char	*line;
-	char	**z;
-
-	fd = open(argv, O_RDONLY);
-	// TODO: check opened file	
-
-	y = 0;
-	map->vectors = malloc(map->rows * sizeof(t_vec3 *));
-	while (y < map->rows)
-	{
-		line = get_next_line(fd);
-		z = ft_split(line, ' ');
-		map->vectors[y] = malloc(map->columns * sizeof(t_vec3));
-		x = 0;
-		while (x < map->columns)
-		{
-			map->vectors[y][x].x = x - map->columns / 2;
-			map->vectors[y][x].y = y - map->rows / 2;
-			map->vectors[y][x].z = ft_atoi(z[x]);
-			x++;
-		}
-		y++;
-		x = 0;
-		free(line);
-		while(z[x])
-		{
-			free(z[x]);
-			x++;
-		}
-		free(z);
-	}
-	line = get_next_line(fd); // needed to free the GNL buffer
-	close(fd);
-}
-
 static int	map_get_columns(char const *s, char c)
 {
 	size_t	flag;
@@ -132,4 +95,61 @@ static int	map_get_columns(char const *s, char c)
 		s++;
 	}
 	return (count);
+}
+
+int	get_map_color(char *str)
+{
+	int		color;
+	char	*color_txt;
+
+	color_txt = ft_strchr(str, ',');
+	if (!color_txt)
+		return (COLOR_GREEN);
+	color_txt = ft_strdup(color_txt + 1);
+	printf("COLOR: %s\n", color_txt);
+
+	color = ft_atoi(color_txt);
+
+	printf("COLOR: %d\n", color);
+
+	return(color);
+}
+
+static void	map_load(t_map *map, char *argv)
+{
+	int		x;
+	int		y;
+	int		fd;
+	char	*line;
+	char	**z;
+
+	fd = open(argv, O_RDONLY);
+	y = 0;
+	map->vectors = malloc(map->rows * sizeof(t_vec *));
+	while (y < map->rows)
+	{
+		map->vectors[y] = malloc(map->columns * sizeof(t_vec));
+		line = get_next_line(fd);
+		z = ft_split(line, ' ');
+		x = 0;
+		while (x < map->columns)
+		{
+			map->vectors[y][x].x = x - map->columns / 2;
+			map->vectors[y][x].y = y - map->rows / 2;
+			map->vectors[y][x].z = ft_atoi(z[x]);
+			map->vectors[y][x].color = get_map_color(z[x]);
+			x++;
+		}
+		y++;
+		x = 0;
+		free(line);
+		while(z[x])
+		{
+			free(z[x]);
+			x++;
+		}
+		free(z);
+	}
+	line = get_next_line(fd); // needed to free the GNL buffer
+	close(fd);
 }

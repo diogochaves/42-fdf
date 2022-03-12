@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 23:46:12 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:07:55 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,20 @@ typedef struct s_rect
 	int	color;
 }	t_rect;
 
-typedef struct s_vec3
+typedef struct s_vec
 {
 	float	x;
 	float	y;
 	float	z;
-} t_vec3;
+	int		color;
+} t_vec;
 
 typedef struct s_map
 {
 	char	*name;	
 	int		columns;
 	int		rows;
-	t_vec3	**vectors;
+	t_vec	**vectors;
 } t_map;
 
 typedef struct	s_data

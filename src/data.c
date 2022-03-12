@@ -12,19 +12,7 @@
 
 #include "../inc/fdf.h"
 
-static float	scale_init(t_map *map)
-{
-	float	scale_x;
-	float	scale_y;
-	float	scale_factor;
-
-	scale_x = (WINDOW_WIDTH - PADDING) / map->columns;
-	scale_y = (WINDOW_HEIGHT - PADDING) / map->rows;
-	scale_factor = min(scale_x, scale_y);
-	if (scale_factor < 4)
-		return (2);
-	return (scale_factor / 2);
-}
+static float	scale_init(t_map *map);
 
 t_data	*data_init(t_fdf *fdf)
 {
@@ -52,4 +40,18 @@ void	data_reset(t_fdf *fdf)
 	fdf->data->x_angle = 0;
 	fdf->data->y_angle = 0;
 	fdf->data->z_angle = 0;
+}
+
+static float	scale_init(t_map *map)
+{
+	float	scale_x;
+	float	scale_y;
+	float	scale_factor;
+
+	scale_x = (WINDOW_WIDTH - PADDING) / map->columns;
+	scale_y = (WINDOW_HEIGHT - PADDING) / map->rows;
+	scale_factor = min(scale_x, scale_y);
+	if (scale_factor < 4)
+		return (2);
+	return (scale_factor / 2);
 }

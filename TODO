@@ -1,0 +1,36 @@
+
+- INPUT MAP
+	- check map for errors (mars.fdf)
+	- get COLOR value from fdf
+
+- PERSPECTIVE PROJECTION
+	- implement a perspective projection
+
+- ISOMETRIC PROJECTION
+	- change the map scale to better fit the screen (10-70.fdf / pylone.fdf)	
+
+- Z-INDEX
+	- add option to increment/decrement original z-indexes
+
+- MOUSE CONTROLS
+	- fix right mouse control to be the same as blender
+
+- DRAW LINE
+	- add option to choose between DDA \ Breseham \ etc	
+	- implement the Breseham algorithm
+
+- MENU
+	- add instructions menu
+
+- STATS MENU
+	- show fps (?)
+
+- IMG RENDER
+	- make a double image, so it always draw to a hidden image before showing 
+	it onto the screen (prevent screen tearing/flickering?)
+
+- ERROR EXIT
+	- free stuff when exiting with errors	
+
+- check for norminette fixes
+- refactor code for better readability
