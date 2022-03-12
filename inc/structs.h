@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 19:29:26 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/11 23:46:12 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_vec3
 
 typedef struct s_map
 {
+	char	*name;	
 	int		columns;
 	int		rows;
 	t_vec3	**vectors;
@@ -62,11 +63,22 @@ typedef struct	s_data
 	float	z_angle;	
 } t_data;
 
+typedef struct	s_mouse
+{
+	int	left_button;
+	int	right_button;
+	int	third_button;
+	int	x;
+	int	y;
+
+} t_mouse;
+
 typedef struct s_fdf
 {
 	t_display	*display;
 	t_map		*map;
 	t_data		*data;
+	t_mouse		*mouse;
 } t_fdf;
 
 #endif

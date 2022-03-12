@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   controls_keyboard.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/06 12:38:25 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 19:31:09 by dchaves-         ###   ########.fr       */
+/*   Created: 2022/03/11 23:44:30 by dchaves-          #+#    #+#             */
+/*   Updated: 2022/03/11 23:45:22 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-int	handle_keypress(int keysym, t_fdf *fdf)
+int	key_press(int keysym, t_fdf *fdf)
 {
 	if (keysym == XK_Escape)
 		close_window(fdf);

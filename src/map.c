@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
+/*   Updated: 2022/03/11 20:24:16 by dchaves-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/fdf.h"
 
 static void	map_check(t_map *map, char *argv);
@@ -13,8 +25,10 @@ t_map	*map_init(int argc, char **argv)
 		return(0);
 
 	map = malloc(sizeof(t_map));
-	// TODO: check malloc
+	if (!map)
+		return(NULL);
 
+	map->name = argv[1];
 	map_check(map, argv[1]);
 	map_load(map, argv[1]);
 	return(map);

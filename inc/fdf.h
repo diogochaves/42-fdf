@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:11:03 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 19:14:09 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 00:07:42 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ void		plot_map(t_fdf *fdf);
 t_data		*data_init(t_fdf *fdf);
 void		data_reset(t_fdf *fdf);
 int			close_window(t_fdf *fdf);
-int			handle_keypress(int keysym, t_fdf *fdf);
+int			key_press(int keysym, t_fdf *fdf);
+t_mouse		*mouse_init(void);
+int			mouse_press(int button, int x, int y, t_fdf *fdf);
+int			mouse_release(int button, int x, int y, t_fdf *fdf);
+int			mouse_move(int x, int y, t_fdf *fdf);
 void		img_pix_put(t_img *img, int x, int y, int color);
 int			render_rect(t_img *img, t_rect rect);
 void		render_background(t_img *img, int color);
@@ -51,5 +55,7 @@ void		vec3_rotate_y(t_vec3 *v, float angle);
 void		vec3_rotate_z(t_vec3 *v, float angle);
 float		max(float a, float b);
 float		min(float a, float b);
+void		interface(t_fdf *fdf);
+void		interface_txt(t_fdf *fdf);
 
 #endif
