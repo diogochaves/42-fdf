@@ -6,15 +6,42 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 22:17:08 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 23:13:52 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-static void	map_check(t_map *map, char *argv);
+static void	map_get_info(t_map *map, char *argv);
+static int	map_get_columns(t_map *map, char const *s, char c);
 static void	map_load(t_map *map, char *argv);
-static int	map_get_columns(char const *s, char c, int col_count);
+
+t_vec **vectors_malloc(t_map *map)
+{
+	t_vec	**vectors;
+	int		y;
+	int		x;
+
+	vectors = malloc(map->rows * sizeof(t_vec *));
+	if (!vectors)
+		return (NULL);
+	y = 0;
+	while (y < map->rows)
+	{
+		x = 0;
+		vectors[y] = malloc(map->columns * sizeof(t_vec));
+		while (x < map->columns)
+		{
+			vectors[y][x].x = x - map->columns / 2;
+			vectors[y][x].y = y - map->rows / 2;
+			vectors[y][x].z = 0;
+			vectors[y][x].color = C_FRONT;
+			x++;
+		}
+		y++;
+	}
+	return (vectors);
+}
 
 t_map	*map_init(int argc, char **argv)
 {
@@ -25,36 +52,39 @@ t_map	*map_init(int argc, char **argv)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		error(ERROR_MALLOC);
-	map->z_max = 0;
-	map->z_min = 0;
+	map_get_info(map, argv[1]);
+	map->vectors = vectors_malloc(map);
 	printf("\033[1;32m\n   Loading map...\033[0m\n");
-	map_check(map, argv[1]);
 	map_load(map, argv[1]);
 	printf("\033[1;32m   [ok]\033[0m\n\n");
 	return (map);
 }
 
-static void	map_check(t_map *map, char *argv)
+static void	map_get_info(t_map *map, char *argv)
 {
 	int		fd;
+	int		col_count_error;
 	char	*line;
 
-	fd = open(argv, O_RDONLY);
-	if (!fd)
-		error(ERROR_OPEN);
+	map->z_max = 0;
+	map->z_min = 0;
 	map->rows = 0;
 	map->columns = 0;
+	col_count_error = 0;
+	fd = open(argv, O_RDONLY);
+	if (!fd)
+		error(ERROR_OPEN);	
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		map->rows++;
-		map->columns = map_get_columns(line, ' ', map->columns);
+		col_count_error = map_get_columns(map, line, ' ');
 		free(line);
 	}
 	close(fd);
-	if (map->rows == 0 || map->columns == 0)
+	if (map->rows == 0 || map->columns == 0 || col_count_error)
 		error(ERROR_MAP);
 }
 
@@ -68,17 +98,15 @@ static void	map_load(t_map *map, char *argv)
 
 	fd = open(argv, O_RDONLY);
 	y = 0;
-	map->vectors = malloc(map->rows * sizeof(t_vec *));
-	while (y < map->rows)
+	while (1)
 	{
-		map->vectors[y] = malloc(map->columns * sizeof(t_vec));
 		line = get_next_line(fd);
+		if (!line)
+			break ;
 		z = ft_split(line, ' ');
 		x = 0;
 		while (x < map->columns)
 		{
-			map->vectors[y][x].x = x - map->columns / 2;
-			map->vectors[y][x].y = y - map->rows / 2;
 			map->vectors[y][x].z = ft_atoi(z[x]);
 			map->vectors[y][x].color = get_map_color(z[x]);
 			if (map->vectors[y][x].z > map->z_max)
@@ -97,11 +125,10 @@ static void	map_load(t_map *map, char *argv)
 		}
 		free(z);
 	}
-	line = get_next_line(fd); // needed to free the GNL buffer
 	close(fd);
 }
 
-static int	map_get_columns(char const *s, char c, int col_count)
+static int	map_get_columns(t_map *map, char const *s, char c)
 {
 	size_t	flag;
 	int		count;
@@ -121,7 +148,8 @@ static int	map_get_columns(char const *s, char c, int col_count)
 		}
 		s++;
 	}
-	if (col_count != 0 && col_count != count)
-		error(ERROR_MAP);
-	return (count);
+	if (map->columns != 0 && map->columns != count)
+		return(1);
+	map->columns = count;
+	return (0);
 }

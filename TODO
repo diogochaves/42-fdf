@@ -1,5 +1,5 @@
-- check for norminette fixes
-- refactor code for better readability
+- MAPS
+	- julia.fdf takes more than 1 minute to load: Problem with LIBFT (ft_split)
 
 - PERSPECTIVE PROJECTION
 	- limit the z_increment (-100 / 100 ?)
@@ -10,9 +10,6 @@
 
 - ISOMETRIC PROJECTION
 	- change the map scale to better fit the screen (10-70.fdf / pylone.fdf)	
-
-- MAPS
-	- julia.fdf takes more than 1 minute to load.
 
 - IMG RENDER
 	- make a double image, so it always draw to a hidden image before showing 
