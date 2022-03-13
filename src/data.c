@@ -22,6 +22,7 @@ t_data	*data_init(t_fdf *fdf)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return(NULL);
+	data->projection = ISOMETRIC;
 	data->scale = scale_init(fdf->map);
 	data->x_move = WINDOW_WIDTH / 2;
 	data->y_move = WINDOW_HEIGHT / 2;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controls_keyboard.c                                :+:      :+:    :+:   */
+/*   keyboard_controls.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:44:30 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 23:45:22 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 23:45:42 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ int	key_press(int keysym, t_fdf *fdf)
 		printf("fdf->map->columns: %d\n", fdf->map->columns);
 		printf("fdf->data->x_move: %f\n", fdf->data->x_move);
 	}
+	if (keysym == XK_i)
+	{
+		fdf->data->projection = ISOMETRIC;
+		data_reset(fdf);
+	}
+	if (keysym == XK_t)
+	{
+		fdf->data->projection = TOP;
+		data_reset(fdf);
+	}
+	if (keysym == XK_p)
+	{
+		fdf->data->projection = PERSPECTIVE;
+		data_reset(fdf);
+	}	
 	if (keysym == XK_w)
 		fdf->data->x_angle += 5 * ANG_1;
 	if (keysym == XK_s)

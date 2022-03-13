@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:11:03 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 16:45:01 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 23:44:02 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ int			plot_rectangle(t_img *img, t_rect rect);
 void		plot_line(t_img *img, t_vec vec0, t_vec vec1);
 void		fill_img(t_img *img, int color);
 void		transform(t_fdf *fdf, t_vec *vec);
-void		project(t_vec *vec, int scale);
+void		project(t_fdf *fdf, t_vec *vec);
 void		scale(t_vec *vec, int scale);
 void		translate(t_vec *vec, float x_move, float y_move);
 void 		isometric(float *x, float *y, float z);
+void 		perspective(float *x, float *y, float z);
 void		rotate_x(t_vec *v, float angle);
 void		rotate_y(t_vec *v, float angle);
 void		rotate_z(t_vec *v, float angle);
@@ -58,6 +59,7 @@ float		max(float a, float b);
 float		min(float a, float b);
 void		interface(t_fdf *fdf);
 void		interface_txt(t_fdf *fdf);
+void		error(int error_code);
 
 int			get_color(t_vec current, t_vec start, t_vec end, double percentage);
 double 		percent(int start, int end, int current);

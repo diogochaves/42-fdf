@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/03/12 16:48:15 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/12 22:01:29 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,12 @@ HEADER		:=	$(INC_PATH)fdf.h \
 SRC_FILES 	:=	main.c \
 				close.c \
 				color.c \
-				keyboard_controls.c \
-				mouse_controls.c \
 				data.c \
 				display.c \
+				error.c \
 				interface.c \
+				keyboard_controls.c \
+				mouse_controls.c \
 				map.c \
 				plot.c \
 				projection.c \

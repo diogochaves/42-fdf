@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 14:31:22 by dchaves-          #+#    #+#              #
-#    Updated: 2022/02/09 20:31:23 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/12 21:16:05 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC_FILES 	:=	ft_isalpha.c \
 				ft_memcmp.c \
 				ft_strnstr.c \
 				ft_atoi.c \
+				ft_atoi_base.c \
 				ft_calloc.c \
 				ft_strdup.c \
 				ft_substr.c \

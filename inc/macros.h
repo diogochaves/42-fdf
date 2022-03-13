@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:25:04 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 11:53:30 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 23:18:24 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,19 @@
 # define ANG_1				0.01745329
 # define ANG_30				0.52359877
 # define ANG_45				0.78539816
+
+# define HEX_BASE			"0123456789abcdef"
+
+# define ERROR_MALLOC		1
+# define ERROR_OPEN			2
+# define ERROR_ARGC			3
+# define ERROR_MAP			4
+
+enum e_projection
+{
+	TOP,
+	ISOMETRIC,
+	PERSPECTIVE
+};
 
 #endif

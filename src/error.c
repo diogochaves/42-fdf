@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 15:59:38 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 23:22:51 by dchaves-         ###   ########.fr       */
+/*   Created: 2022/03/12 22:01:44 by dchaves-          #+#    #+#             */
+/*   Updated: 2022/03/12 23:13:29 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
 
-void	transform(t_fdf *fdf, t_vec *vec)
+void	error(int error_code)
 {
-	rotate_x(vec, fdf->data->x_angle);
-	rotate_y(vec, fdf->data->y_angle);
-	rotate_z(vec, fdf->data->z_angle);
-	project(fdf, vec);
-	scale(vec, fdf->data->scale);
-	translate(vec, fdf->data->x_move, fdf->data->y_move);
+	if (error_code == ERROR_MALLOC)
+		ft_putstr_fd("\033[31;1m\n   MALLOC ERROR\033[0m\n\n", 1);
+	if (error_code == ERROR_OPEN)
+		ft_putstr_fd("\033[33;1m\n   ERROR OPENING FILE\033[0m\n\n", 1);
+	if (error_code == ERROR_ARGC)
+		ft_putstr_fd("\033[33;1m\n   WRONG NUMBER OF ARGUMENTS\033[0m\n\n", 1);
+	if (error_code == ERROR_MAP)
+		ft_putstr_fd("\033[31;1m\n   MAP ERROR\033[0m\n\n", 1);
+	exit(error_code);
 }

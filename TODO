@@ -1,8 +1,4 @@
 
-- INPUT MAP
-	- check map for errors (mars.fdf)
-	- get COLOR value from fdf
-
 - PERSPECTIVE PROJECTION
 	- implement a perspective projection
 

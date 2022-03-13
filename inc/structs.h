@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 14:07:55 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/12 23:15:22 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_map
 
 typedef struct	s_data
 {
+	int		projection;
 	float	scale;
 	float	x_move;	
 	float	y_move;
