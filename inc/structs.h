@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 14:37:05 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 19:46:42 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,23 @@ typedef struct s_vec
 
 typedef struct s_map
 {
-	char	*name;	
+	t_vec	**vectors;
 	int		columns;
 	int		rows;
-	t_vec	**vectors;
+	int		z_max;
+	int		z_min;
 }	t_map;
 
 typedef struct s_data
 {
 	int		projection;
 	float	scale;
-	float	x_move;	
+	float	z_scale;
+	float	x_move;
 	float	y_move;
-	float	x_angle;	
+	float	x_angle;
 	float	y_angle;
-	float	z_angle;	
+	float	z_angle;
 }	t_data;
 
 typedef struct s_mouse
@@ -81,6 +83,7 @@ typedef struct s_fdf
 	t_map		*map;
 	t_data		*data;
 	t_mouse		*mouse;
+	int			mod_key;
 	int			menu;
 }	t_fdf;
 

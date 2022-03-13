@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 14:40:33 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 19:50:41 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_map	*map_init(int argc, char **argv)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		error(ERROR_MALLOC);
-	map->name = argv[1];
+	map->z_max = 0;
+	map->z_min = 0;
 	printf("\033[1;32m\n   Loading map...\033[0m\n");
 	map_check(map, argv[1]);
 	map_load(map, argv[1]);
@@ -130,6 +131,10 @@ static void	map_load(t_map *map, char *argv)
 			map->vectors[y][x].y = y - map->rows / 2;
 			map->vectors[y][x].z = ft_atoi(z[x]);
 			map->vectors[y][x].color = get_map_color(z[x]);
+			if (map->vectors[y][x].z > map->z_max)
+				map->z_max = map->vectors[y][x].z;
+			if (map->vectors[y][x].z < map->z_min)
+				map->z_min = map->vectors[y][x].z;
 			x++;
 		}
 		y++;

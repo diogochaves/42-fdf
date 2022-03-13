@@ -23,6 +23,7 @@ t_data	*data_init(t_fdf *fdf)
 		error(ERROR_MALLOC);
 	data->projection = ISOMETRIC;
 	data->scale = scale_init(fdf->map);
+	data->z_scale = 1;
 	data->x_move = WINDOW_WIDTH / 2;
 	data->y_move = WINDOW_HEIGHT / 2;
 	data->x_angle = 0;
@@ -34,6 +35,7 @@ t_data	*data_init(t_fdf *fdf)
 void	data_reset(t_fdf *fdf)
 {
 	fdf->data->scale = scale_init(fdf->map);
+	fdf->data->z_scale = 1;
 	fdf->data->x_move = WINDOW_WIDTH / 2;
 	fdf->data->y_move = WINDOW_HEIGHT / 2;
 	fdf->data->x_angle = 0;

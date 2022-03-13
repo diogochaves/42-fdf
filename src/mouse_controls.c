@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:44:47 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 14:10:44 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 15:39:38 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,19 @@ int	mouse_press(int button, int x, int y, t_fdf *fdf)
 	(void)x;
 	(void)y;
 	if (button == MOUSE_SCROLL_UP)
-		fdf->data->scale *= 1.2;
+	{
+		if (fdf->mod_key)
+			fdf->data->z_scale += 0.1;
+		else
+			fdf->data->scale *= 1.2;
+	}
 	if (button == MOUSE_SCROLL_DOWN)
-		fdf->data->scale /= 1.2;
+	{
+		if (fdf->mod_key)
+			fdf->data->z_scale -= 0.1;
+		else
+			fdf->data->scale /= 1.2;
+	}
 	if (button == MOUSE_LEFT_BUTTON)
 		fdf->mouse->left_button = 1;
 	if (button == MOUSE_RIGHT_BUTTON)

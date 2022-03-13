@@ -1,11 +1,5 @@
-- check for norminette fixes
-- refactor code for better readability
-
-- Z-INDEX
-	- add option to increment/decrement original z-indexes	
-
 - PERSPECTIVE PROJECTION
-	- implement a perspective projection
+	- limit the z_increment (-100 / 100 ?)
 
 - DRAW LINE
 	- add option to choose between DDA \ Breseham \ etc	
@@ -28,7 +22,7 @@
 	- show fps (?)	
 
 - ERROR EXIT
-	- free stuff when exiting with errors	
+	- free stuff when exiting with errors
 
 - check for norminette fixes
 - refactor code for better readability

@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:25:04 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 14:39:43 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 16:31:03 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@
 # define C_ORANGE		0xffb86c
 
 # define ANG_1				0.01745329
-# define ANG_30				0.52359877
+# define ANG_26				0.46373398 // dimetric
+# define ANG_30				0.52359877 // isometric
 # define ANG_45				0.78539816
 
 # define HEX_BASE			"0123456789abcdef"
@@ -55,9 +56,10 @@
 
 enum e_projection
 {
-	TOP,
 	ISOMETRIC,
-	PERSPECTIVE
+	DIMETRIC,
+	PERSPECTIVE,
+	TOP
 };
 
 #endif
