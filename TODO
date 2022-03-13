@@ -1,3 +1,5 @@
+- MAPS
+	- julia.fdf takes more than 1 minute to load.
 
 - PERSPECTIVE PROJECTION
 	- implement a perspective projection
