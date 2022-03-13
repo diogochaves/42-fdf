@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/03/13 14:39:13 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/13 20:37:18 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,19 +33,19 @@ HEADER		:=	$(INC_PATH)fdf.h \
 				$(INC_PATH)macros.h
 
 SRC_FILES 	:=	main.c \
-				close.c \
 				color.c \
+				ctrl_keyboard.c \
+				ctrl_mouse.c \
 				data.c \
 				display.c \
-				error.c \
-				interface.c \
-				keyboard_controls.c \
-				mouse_controls.c \
+				exit.c \
 				map.c \
 				plot.c \
 				projection.c \
 				render.c \
 				utils.c \
+				ui.c \
+				ui_menu.c \
 				vector.c
 SOURCES		:=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ_FILES	:=	$(patsubst %.c, %.o, $(SRC_FILES))

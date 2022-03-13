@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:11:03 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 20:04:06 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 20:38:55 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ float		min(float a, float b);
 int			toggle(int status);
 void		interface(t_fdf *fdf);
 void		interface_txt(t_fdf *fdf);
+void		status_bar(t_fdf *fdf);
+void		status_bar_txt(t_fdf *fdf);
+void		info_menu(t_fdf *fdf);
+void		info_menu_txt(t_fdf *fdf);
 void		error(int error_code);
 
 int			get_color(t_vec current, t_vec start, t_vec end, double percentage);
