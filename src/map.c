@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 03:59:56 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 14:40:33 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_map	*map_init(int argc, char **argv)
 	map_check(map, argv[1]);
 	map_load(map, argv[1]);
 	printf("\033[1;32m   [ok]\033[0m\n\n");
-	return(map);
+	return (map);
 }
 
 void	map_free(t_map *map)
@@ -56,7 +56,7 @@ static void	map_check(t_map *map, char *argv)
 		error(ERROR_OPEN);
 	map->rows = 0;
 	map->columns = 0;
-	while(1)
+	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -101,10 +101,10 @@ int	get_map_color(char *str)
 
 	str = ft_strchr(str, ',');
 	if (!str)
-		return (COLOR_GREEN);
+		return (C_GREEN);
 	++str;
 	color = ft_atoi_base(str, HEX_BASE);
-	return(color);
+	return (color);
 }
 
 static void	map_load(t_map *map, char *argv)
@@ -135,14 +135,12 @@ static void	map_load(t_map *map, char *argv)
 		y++;
 		x = 0;
 		free(line);
-		/*
-		while(z[x])
+		while (z[x])
 		{
 			free(z[x]);
 			x++;
 		}
 		free(z);
-		*/
 	}
 	line = get_next_line(fd); // needed to free the GNL buffer
 	close(fd);

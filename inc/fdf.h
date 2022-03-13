@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:11:03 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 12:54:09 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 14:39:20 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@
 /* NOT ALLOWED */
 # include <stdio.h> //printf
 
-
-t_display	*display_init();
+t_display	*display_init(void);
 void		display_img_init(t_fdf *fdf);
 int			create_image(t_fdf *fdf);
 t_map		*map_init(int argc, char **argv);
@@ -50,8 +49,8 @@ void		transform(t_fdf *fdf, t_vec *vec);
 void		project(t_fdf *fdf, t_vec *vec);
 void		scale(t_vec *vec, int scale);
 void		translate(t_vec *vec, float x_move, float y_move);
-void 		isometric(float *x, float *y, float z);
-void 		perspective(float *x, float *y, float z);
+void		isometric(float *x, float *y, float z);
+void		perspective(float *x, float *y, float z);
 void		rotate_x(t_vec *v, float angle);
 void		rotate_y(t_vec *v, float angle);
 void		rotate_z(t_vec *v, float angle);
@@ -63,6 +62,6 @@ void		interface_txt(t_fdf *fdf);
 void		error(int error_code);
 
 int			get_color(t_vec current, t_vec start, t_vec end, double percentage);
-double 		percent(int start, int end, int current);
+double		percent(int start, int end, int current);
 
 #endif

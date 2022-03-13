@@ -17,11 +17,10 @@ static float	scale_init(t_map *map);
 t_data	*data_init(t_fdf *fdf)
 {
 	t_data	*data;
-	(void)fdf;
-	
+
 	data = malloc(sizeof(t_data));
 	if (!data)
-		return(NULL);
+		error(ERROR_MALLOC);
 	data->projection = ISOMETRIC;
 	data->scale = scale_init(fdf->map);
 	data->x_move = WINDOW_WIDTH / 2;
@@ -29,8 +28,7 @@ t_data	*data_init(t_fdf *fdf)
 	data->x_angle = 0;
 	data->y_angle = 0;
 	data->z_angle = 0;
-
-	return(data);
+	return (data);
 }
 
 void	data_reset(t_fdf *fdf)

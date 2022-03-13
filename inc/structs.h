@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 12:51:58 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 14:37:05 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_vec
 	float	y;
 	float	z;
 	int		color;
-} t_vec;
+}	t_vec;
 
 typedef struct s_map
 {
@@ -52,9 +52,9 @@ typedef struct s_map
 	int		columns;
 	int		rows;
 	t_vec	**vectors;
-} t_map;
+}	t_map;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int		projection;
 	float	scale;
@@ -63,9 +63,9 @@ typedef struct	s_data
 	float	x_angle;	
 	float	y_angle;
 	float	z_angle;	
-} t_data;
+}	t_data;
 
-typedef struct	s_mouse
+typedef struct s_mouse
 {
 	int	left_button;
 	int	right_button;
@@ -73,7 +73,7 @@ typedef struct	s_mouse
 	int	x;
 	int	y;
 
-} t_mouse;
+}	t_mouse;
 
 typedef struct s_fdf
 {
@@ -82,6 +82,6 @@ typedef struct s_fdf
 	t_data		*data;
 	t_mouse		*mouse;
 	int			menu;
-} t_fdf;
+}	t_fdf;
 
 #endif
