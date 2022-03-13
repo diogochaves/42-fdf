@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:07:43 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 13:18:44 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 12:52:38 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	fdf.display = display_init();
 	fdf.data = data_init(&fdf);
 	fdf.mouse = mouse_init();
+	fdf.menu = 1;
 	display_img_init(&fdf);
 	
 	/* Setup hooks */ 

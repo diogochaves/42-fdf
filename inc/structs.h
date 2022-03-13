@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 23:15:22 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 12:51:58 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_fdf
 	t_map		*map;
 	t_data		*data;
 	t_mouse		*mouse;
+	int			menu;
 } t_fdf;
 
 #endif

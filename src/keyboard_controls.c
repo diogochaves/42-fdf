@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:44:30 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 23:45:42 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 12:54:47 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ int	key_press(int keysym, t_fdf *fdf)
 	if (keysym == XK_Escape)
 		close_window(fdf);
 	if (keysym == XK_Tab)
-	{
-		printf("WINDOW_WIDTH: %d\n", WINDOW_WIDTH);
-		printf("fdf->map->columns: %d\n", fdf->map->columns);
-		printf("fdf->data->x_move: %f\n", fdf->data->x_move);
-	}
+		fdf->menu = toggle(fdf->menu);
 	if (keysym == XK_i)
 	{
 		fdf->data->projection = ISOMETRIC;

@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:11:03 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 23:44:02 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 12:54:09 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		rotate_y(t_vec *v, float angle);
 void		rotate_z(t_vec *v, float angle);
 float		max(float a, float b);
 float		min(float a, float b);
+int			toggle(int status);
 void		interface(t_fdf *fdf);
 void		interface_txt(t_fdf *fdf);
 void		error(int error_code);

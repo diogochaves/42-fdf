@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:25:04 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/12 23:18:24 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 12:47:24 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@
 
 # define MLX_ERROR 			1
 
-# define COLOR_BACKGROUND	0x21252b
-# define COLOR_FOREGROUND	0xf8f8f2
+# define COLOR_BACK			0x21252b
+# define COLOR_FRONT		0xf8f8f2
 # define COLOR_STATUS_BAR	0x282a36
+# define COLOR_MENU_BTN		0x383a59
+# define COLOR_MENU_TXT		0X8c929e
 # define COLOR_TXT			0xbd93f9
 # define COLOR_WHITE		0xFFFFFF
 # define COLOR_BLACK		0x000000

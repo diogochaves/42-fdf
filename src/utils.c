@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:13:00 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/11 19:13:01 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 12:53:54 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,11 @@ float	min(float a, float b)
 		return (a);
 	else
 		return (b);
+}
+
+int		toggle(int status)
+{
+	if (status)
+		return (0);
+	return (1);
 }
