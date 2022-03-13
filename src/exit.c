@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 22:01:44 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 20:33:51 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 22:05:59 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	close_window(t_fdf *fdf)
 {
-	map_free(fdf->map);
+	free_map(fdf->map);
 	free(fdf->map);
 	mlx_destroy_image(fdf->display->mlx_ptr, fdf->display->img.mlx_img);
 	mlx_destroy_window(fdf->display->mlx_ptr, fdf->display->win_ptr);
@@ -39,4 +39,14 @@ void	error(int error_code)
 	if (error_code == ERROR_DISPLAY)
 		ft_putstr_fd("\033[31;1m\n   DISPLAY ERROR\033[0m\n\n", 1);
 	exit(error_code);
+}
+
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->rows)
+		free(map->vectors[i++]);
+	free(map->vectors);
 }

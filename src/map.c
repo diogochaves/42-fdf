@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 19:50:41 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/13 22:17:08 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,6 @@ t_map	*map_init(int argc, char **argv)
 	return (map);
 }
 
-void	map_free(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->rows)
-	{
-		free(map->vectors[i]);
-		i++;
-	}
-	free(map->vectors);
-}
-
 static void	map_check(t_map *map, char *argv)
 {
 	int		fd;
@@ -69,43 +56,6 @@ static void	map_check(t_map *map, char *argv)
 	close(fd);
 	if (map->rows == 0 || map->columns == 0)
 		error(ERROR_MAP);
-}
-
-static int	map_get_columns(char const *s, char c, int col_count)
-{
-	size_t	flag;
-	int		count;
-
-	flag = 0;
-	count = 0;
-	while (*s != '\0')
-	{
-		if (*s != c && !flag)
-		{
-			count++;
-			flag = 1;
-		}
-		else if (*s == c)
-		{
-			flag = 0;
-		}
-		s++;
-	}
-	if (col_count != 0 && col_count != count)
-		error(ERROR_MAP);
-	return (count);
-}
-
-int	get_map_color(char *str)
-{
-	int		color;
-
-	str = ft_strchr(str, ',');
-	if (!str)
-		return (C_GREEN);
-	++str;
-	color = ft_atoi_base(str, HEX_BASE);
-	return (color);
 }
 
 static void	map_load(t_map *map, char *argv)
@@ -149,4 +99,29 @@ static void	map_load(t_map *map, char *argv)
 	}
 	line = get_next_line(fd); // needed to free the GNL buffer
 	close(fd);
+}
+
+static int	map_get_columns(char const *s, char c, int col_count)
+{
+	size_t	flag;
+	int		count;
+
+	flag = 0;
+	count = 0;
+	while (*s != '\0')
+	{
+		if (*s != c && !flag)
+		{
+			count++;
+			flag = 1;
+		}
+		else if (*s == c)
+		{
+			flag = 0;
+		}
+		s++;
+	}
+	if (col_count != 0 && col_count != count)
+		error(ERROR_MAP);
+	return (count);
 }

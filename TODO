@@ -1,3 +1,6 @@
+- check for norminette fixes
+- refactor code for better readability
+
 - PERSPECTIVE PROJECTION
 	- limit the z_increment (-100 / 100 ?)
 
@@ -19,7 +22,8 @@
 	- fix right mouse control to be the same as blender
 
 - STATS MENU
-	- show fps (?)	
+	- show z_scale
+	- show fps (?)
 
 - ERROR EXIT
 	- free stuff when exiting with errors
