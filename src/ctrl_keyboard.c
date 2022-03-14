@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:44:30 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 21:43:13 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:36:06 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ static int	keycode_scale(int key, t_fdf *fdf)
 		fdf->data->scale *= 1.1;
 	else if (key == XK_minus || key == XK_KP_Subtract)
 		fdf->data->scale /= 1.1;
-	else if (key == XK_z)
+	else if (key == XK_z && fdf->data->z_scale < 1)
 		fdf->data->z_scale += 0.1;
-	else if (key == XK_x)
+	else if (key == XK_x && fdf->data->z_scale > -1)
 		fdf->data->z_scale -= 0.1;
 	return (0);
 }

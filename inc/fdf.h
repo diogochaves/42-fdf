@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:11:03 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 22:05:31 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:08:39 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		display_img_init(t_fdf *fdf);
 int			create_image(t_fdf *fdf);
 t_map		*map_init(int argc, char **argv);
 void		free_map(t_map *map);
+t_vec		**vectors_malloc(t_map *map);
 int			get_map_color(char *str);
 void		plot_map(t_fdf *fdf);
 t_data		*data_init(t_fdf *fdf);
@@ -62,8 +63,6 @@ float		min(float a, float b);
 int			toggle(int status);
 void		interface(t_fdf *fdf);
 void		interface_txt(t_fdf *fdf);
-void		status_bar(t_fdf *fdf);
-void		status_bar_txt(t_fdf *fdf);
 void		info_menu(t_fdf *fdf);
 void		info_menu_txt(t_fdf *fdf);
 void		error(int error_code);

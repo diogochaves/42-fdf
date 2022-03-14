@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:59:43 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 20:36:32 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:04:22 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,16 @@ void	perspective(t_vec *vec, float s)
 void	project(t_fdf *fdf, t_vec *vec)
 {
 	float	perspective_z;
-	
+
 	if (fdf->data->projection == ISOMETRIC)
 		isometric(&vec->x, &vec->y, vec->z);
 	if (fdf->data->projection == DIMETRIC)
-		dimetric(&vec->x, &vec->y, vec->z);		
+		dimetric(&vec->x, &vec->y, vec->z);
 	if (fdf->data->projection == PERSPECTIVE)
 	{
 		perspective_z = max(
-			(fdf->map->z_max - fdf->map->z_min), 
-			max(fdf->map->columns, fdf->map->rows));
+				(fdf->map->z_max - fdf->map->z_min),
+				max(fdf->map->columns, fdf->map->rows));
 		perspective(vec, perspective_z);
 	}
-}
-
-void	scale(t_vec *vec, int scale)
-{
-	vec->x *= scale;
-	vec->y *= scale;
-}
-
-void	translate(t_vec *vec, float x_move, float y_move)
-{
-	vec->x += x_move;
-	vec->y += y_move;
 }

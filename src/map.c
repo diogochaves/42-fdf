@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 23:13:52 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/14 19:59:46 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,7 @@
 static void	map_get_info(t_map *map, char *argv);
 static int	map_get_columns(t_map *map, char const *s, char c);
 static void	map_load(t_map *map, char *argv);
-
-t_vec **vectors_malloc(t_map *map)
-{
-	t_vec	**vectors;
-	int		y;
-	int		x;
-
-	vectors = malloc(map->rows * sizeof(t_vec *));
-	if (!vectors)
-		return (NULL);
-	y = 0;
-	while (y < map->rows)
-	{
-		x = 0;
-		vectors[y] = malloc(map->columns * sizeof(t_vec));
-		while (x < map->columns)
-		{
-			vectors[y][x].x = x - map->columns / 2;
-			vectors[y][x].y = y - map->rows / 2;
-			vectors[y][x].z = 0;
-			vectors[y][x].color = C_FRONT;
-			x++;
-		}
-		y++;
-	}
-	return (vectors);
-}
+static void	map_get_data(t_map *map, char *line, int line_num);
 
 t_map	*map_init(int argc, char **argv)
 {
@@ -73,7 +47,7 @@ static void	map_get_info(t_map *map, char *argv)
 	col_count_error = 0;
 	fd = open(argv, O_RDONLY);
 	if (!fd)
-		error(ERROR_OPEN);	
+		error(ERROR_OPEN);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -90,42 +64,48 @@ static void	map_get_info(t_map *map, char *argv)
 
 static void	map_load(t_map *map, char *argv)
 {
-	int		x;
-	int		y;
+	int		line_num;
 	int		fd;
 	char	*line;
-	char	**z;
 
 	fd = open(argv, O_RDONLY);
-	y = 0;
+	line_num = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		z = ft_split(line, ' ');
-		x = 0;
-		while (x < map->columns)
-		{
-			map->vectors[y][x].z = ft_atoi(z[x]);
-			map->vectors[y][x].color = get_map_color(z[x]);
-			if (map->vectors[y][x].z > map->z_max)
-				map->z_max = map->vectors[y][x].z;
-			if (map->vectors[y][x].z < map->z_min)
-				map->z_min = map->vectors[y][x].z;
-			x++;
-		}
-		y++;
-		x = 0;
+		map_get_data(map, line, line_num);
+		line_num++;
 		free(line);
-		while (z[x])
-		{
-			free(z[x]);
-			x++;
-		}
-		free(z);
 	}
 	close(fd);
+}
+
+static void	map_get_data(t_map *map, char *line, int line_num)
+{
+	int		col_num;
+	char	**data;
+
+	data = ft_split(line, ' ');
+	col_num = 0;
+	while (col_num < map->columns)
+	{
+		map->vectors[line_num][col_num].z = ft_atoi(data[col_num]);
+		map->vectors[line_num][col_num].color = get_map_color(data[col_num]);
+		if (map->vectors[line_num][col_num].z > map->z_max)
+			map->z_max = map->vectors[line_num][col_num].z;
+		if (map->vectors[line_num][col_num].z < map->z_min)
+			map->z_min = map->vectors[line_num][col_num].z;
+		col_num++;
+	}
+	col_num = 0;
+	while (data[col_num])
+	{
+		free(data[col_num]);
+		col_num++;
+	}
+	free(data);
 }
 
 static int	map_get_columns(t_map *map, char const *s, char c)
@@ -149,7 +129,7 @@ static int	map_get_columns(t_map *map, char const *s, char c)
 		s++;
 	}
 	if (map->columns != 0 && map->columns != count)
-		return(1);
+		return (1);
 	map->columns = count;
 	return (0);
 }

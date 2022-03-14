@@ -6,12 +6,29 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 19:46:42 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/14 02:51:17 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef struct s_vec
+{
+	float	x;
+	float	y;
+	float	z;
+	int		color;
+}	t_vec;
+
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
+}	t_rect;
 
 typedef struct s_img
 {
@@ -28,23 +45,6 @@ typedef struct s_display
 	void	*win_ptr;
 	t_img	img;
 }	t_display;
-
-typedef struct s_rect
-{
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	color;
-}	t_rect;
-
-typedef struct s_vec
-{
-	float	x;
-	float	y;
-	float	z;
-	int		color;
-}	t_vec;
 
 typedef struct s_map
 {

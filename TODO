@@ -1,29 +1,5 @@
 - MAPS
 	- julia.fdf takes more than 1 minute to load: Problem with LIBFT (ft_split)
 
-- PERSPECTIVE PROJECTION
-	- limit the z_increment (-100 / 100 ?)
-
-- DRAW LINE
-	- add option to choose between DDA \ Breseham \ etc	
-	- implement the Breseham algorithm	
-
-- ISOMETRIC PROJECTION
-	- change the map scale to better fit the screen (10-70.fdf / pylone.fdf)	
-
-- IMG RENDER
-	- make a double image, so it always draw to a hidden image before showing 
-	it onto the screen (prevent screen tearing/flickering?)
-
-- MOUSE CONTROLS
-	- fix right mouse control to be the same as blender
-
-- STATS MENU
-	- show z_scale
-	- show fps (?)
-
-- ERROR EXIT
-	- free stuff when exiting with errors
-
-- check for norminette fixes
-- refactor code for better readability
+- INC/FDF.H
+	- organize the functions

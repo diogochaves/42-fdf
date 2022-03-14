@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_controls.c                                   :+:      :+:    :+:   */
+/*   ctrl_mouse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:44:47 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 15:39:38 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/14 18:36:02 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int	mouse_press(int button, int x, int y, t_fdf *fdf)
 	(void)y;
 	if (button == MOUSE_SCROLL_UP)
 	{
-		if (fdf->mod_key)
+		if (fdf->mod_key && fdf->data->z_scale < 1)
 			fdf->data->z_scale += 0.1;
-		else
+		else if (!fdf->mod_key)
 			fdf->data->scale *= 1.2;
 	}
 	if (button == MOUSE_SCROLL_DOWN)
 	{
-		if (fdf->mod_key)
+		if (fdf->mod_key && fdf->data->z_scale > -1)
 			fdf->data->z_scale -= 0.1;
-		else
+		else if (!fdf->mod_key)
 			fdf->data->scale /= 1.2;
 	}
 	if (button == MOUSE_LEFT_BUTTON)
