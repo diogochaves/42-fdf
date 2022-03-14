@@ -1,5 +1,0 @@
-- MAPS
-	- julia.fdf takes more than 1 minute to load: Problem with LIBFT (ft_split)
-
-- INC/FDF.H
-	- organize the functions

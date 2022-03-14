@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/14 19:59:46 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/14 20:22:01 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ t_map	*map_init(int argc, char **argv)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		error(ERROR_MALLOC);
+	map->z_max = 0;
+	map->z_min = 0;
+	map->rows = 0;
+	map->columns = 0;
 	map_get_info(map, argv[1]);
 	map->vectors = vectors_malloc(map);
-	printf("\033[1;32m\n   Loading map...\033[0m\n");
+	ft_putstr_fd("\033[1;32m\n   Loading map...\033[0m\n", 1);
 	map_load(map, argv[1]);
-	printf("\033[1;32m   [ok]\033[0m\n\n");
+	ft_putstr_fd("\033[1;32m   [ok]\033[0m\n\n", 1);
 	return (map);
 }
 
@@ -40,10 +44,6 @@ static void	map_get_info(t_map *map, char *argv)
 	int		col_count_error;
 	char	*line;
 
-	map->z_max = 0;
-	map->z_min = 0;
-	map->rows = 0;
-	map->columns = 0;
 	col_count_error = 0;
 	fd = open(argv, O_RDONLY);
 	if (!fd)
@@ -59,7 +59,10 @@ static void	map_get_info(t_map *map, char *argv)
 	}
 	close(fd);
 	if (map->rows == 0 || map->columns == 0 || col_count_error)
+	{
+		free(map);
 		error(ERROR_MAP);
+	}
 }
 
 static void	map_load(t_map *map, char *argv)
