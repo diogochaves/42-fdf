@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 14:31:22 by dchaves-          #+#    #+#              #
-#    Updated: 2022/03/12 21:16:05 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/14 23:39:39 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,8 +84,12 @@ $(NAME):		$(OBJECTS)
 				$(LIB) $(NAME) $(OBJECTS)
 
 # -> creates object files inside ./obj/
-$(OBJ_PATH)%.o:	$(SRC_PATH)%.c
+$(OBJ_PATH)%.o:	$(SRC_PATH)%.c | path
 				$(CC) $(CFLAGS) -I $(INC_PATH) -c $< -o $@
+
+path:
+	mkdir -p $(OBJ_PATH)
+	mkdir -p $(BIN_PATH)
 
 clean:
 				$(RM) $(OBJECTS)

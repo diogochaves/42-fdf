@@ -6,7 +6,7 @@
 #    By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/09 20:41:52 by dchaves-          #+#    #+#              #
-#    Updated: 2022/03/14 19:57:59 by dchaves-         ###   ########.fr        #
+#    Updated: 2022/03/14 23:38:37 by dchaves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,18 +60,21 @@ $(NAME):		$(OBJECTS)
 				$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) -lmlx -lXext -lX11 -lm -L $(LIBFT_PATH) -lft
 
 # -> creates object files inside ./obj/
-$(OBJ_PATH)%.o:	$(SRC_PATH)%.c $(HEADER)
+$(OBJ_PATH)%.o:	$(SRC_PATH)%.c $(HEADER) | path
 				$(CC) $(CFLAGS) -I $(INC_PATH) -c $< -o $@
 
 libft:
 				make -C $(LIB_PATH)libft
+
+path:
+				mkdir -p $(OBJ_PATH)
 
 clean:
 				$(RM) $(OBJECTS)
 
 fclean:			clean
 				$(RM) $(NAME)
-				make fclean -C $(LIB_PATH)libft				
+				make fclean -C $(LIB_PATH)libft
 
 re:				fclean all
 
