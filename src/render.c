@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:59:38 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 23:01:29 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:04:36 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	render(t_fdf *fdf)
 {
 	if (fdf->display->win_ptr == NULL)
 		return (1);
+	if (fdf->animation)
+		fdf->data->z_angle += 0.5 * ANG_1;
 	create_image(fdf);
 	interface(fdf);
 	mlx_put_image_to_window(

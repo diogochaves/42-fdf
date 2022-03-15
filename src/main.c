@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 21:07:43 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/14 21:46:17 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:50:37 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	fdf.mouse = mouse_init();
 	fdf.menu = 1;
 	fdf.mod_key = 0;
+	fdf.animation = 0;
 	win_ptr = fdf.display->win_ptr;
 	display_img_init(&fdf);
 	mlx_loop_hook(fdf.display->mlx_ptr, &render, &fdf);

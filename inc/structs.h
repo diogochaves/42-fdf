@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:08:01 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/14 02:51:17 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:50:04 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_fdf
 	t_mouse		*mouse;
 	int			mod_key;
 	int			menu;
+	int			animation;
 }	t_fdf;
 
 #endif
