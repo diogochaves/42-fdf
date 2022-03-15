@@ -6,11 +6,12 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:52:23 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/14 20:22:01 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/15 12:09:37 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fdf.h"
+#include <stdio.h>
 
 static void	map_get_info(t_map *map, char *argv);
 static int	map_get_columns(t_map *map, char const *s, char c);
@@ -51,14 +52,14 @@ static void	map_get_info(t_map *map, char *argv)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (!line)
+		if (!line || col_count_error)
 			break ;
 		map->rows++;
 		col_count_error = map_get_columns(map, line, ' ');
 		free(line);
 	}
 	close(fd);
-	if (map->rows == 0 || map->columns == 0 || col_count_error)
+	if (map->columns == 0 || col_count_error)
 	{
 		free(map);
 		error(ERROR_MAP);
@@ -120,15 +121,13 @@ static int	map_get_columns(t_map *map, char const *s, char c)
 	count = 0;
 	while (*s != '\0')
 	{
-		if (*s != c && !flag)
+		if (*s != c && !flag && ft_isprint(*s))
 		{
 			count++;
 			flag = 1;
 		}
 		else if (*s == c)
-		{
 			flag = 0;
-		}
 		s++;
 	}
 	if (map->columns != 0 && map->columns != count)
