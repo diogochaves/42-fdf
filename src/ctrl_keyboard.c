@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 23:44:30 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/15 13:00:58 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/16 16:30:12 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	key_press(int key, t_fdf *fdf)
 	else if (key == XK_Tab)
 		fdf->menu = toggle(fdf->menu);
 	else if (key == XK_slash)
-		fdf->animation = toggle(fdf->animation);	
+		fdf->animation = toggle(fdf->animation);
 	else if (key == XK_Control_L || key == XK_Control_R)
 		fdf->mod_key = 1;
 	else if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4)

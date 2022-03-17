@@ -6,7 +6,7 @@
 /*   By: dchaves- <dchaves-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 15:25:04 by dchaves-          #+#    #+#             */
-/*   Updated: 2022/03/13 16:31:03 by dchaves-         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:53:19 by dchaves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,25 @@
 # define WINDOW_HEIGHT		720
 # define PADDING			200
 
-# define C_BACK			0x21252b
-# define C_FRONT		0xf8f8f2
-# define C_STATUS_BAR	0x282a36
-# define C_MENU_BTN		0x383a59
-# define C_MENU_TXT		0x8c929e
-# define C_TXT			0xbd93f9
-# define C_WHITE		0xFFFFFF
-# define C_BLACK		0x000000
-# define C_RED			0xff5555
-# define C_YELLOW		0xf1fa8c
-# define C_GREEN		0x50fa7b
-# define C_CYAN			0x8be9fd
-# define C_PINK			0xff79c6
-# define C_PURPLE		0xbd93f9
-# define C_ORANGE		0xffb86c
+# define C_BACK				0x21252b
+# define C_FRONT			0xf8f8f2
+# define C_STATUS_BAR		0x282a36
+# define C_MENU_BTN			0x383a59
+# define C_MENU_TXT			0x8c929e
+# define C_TXT				0xbd93f9
+# define C_WHITE			0xFFFFFF
+# define C_BLACK			0x000000
+# define C_RED				0xff5555
+# define C_YELLOW			0xf1fa8c
+# define C_GREEN			0x50fa7b
+# define C_CYAN				0x8be9fd
+# define C_PINK				0xff79c6
+# define C_PURPLE			0xbd93f9
+# define C_ORANGE			0xffb86c
 
 # define ANG_1				0.01745329
-# define ANG_26				0.46373398 // dimetric
-# define ANG_30				0.52359877 // isometric
+# define ANG_26				0.46373398
+# define ANG_30				0.52359877
 # define ANG_45				0.78539816
 
 # define HEX_BASE			"0123456789abcdef"
